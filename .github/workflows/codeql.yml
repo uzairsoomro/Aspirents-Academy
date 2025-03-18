@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspirent Academy</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        header { background: #0073e6; color: #fff; padding: 15px 0; text-align: center; font-size: 24px; }
+        nav { text-align: center; background: #005bb5; padding: 10px; }
+        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-size: 18px; }
+        .container { width: 80%; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; }
+        .image-container { text-align: center; margin-top: 20px; }
+        .image-container img { width: 80%; max-width: 600px; border-radius: 8px; }
+        footer { text-align: center; background: #0073e6; color: #fff; padding: 10px; margin-top: 20px; }
+        .form-container { width: 50%; margin: 20px auto; background: #fff; padding: 20px; border-radius: 8px; text-align: center; }
+        input { width: 90%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; }
+        button { background: #0073e6; color: #fff; border: none; padding: 10px 15px; cursor: pointer; border-radius: 4px; }
+        .error { color: red; font-size: 14px; display: none; }
+    </style>
+    <script>
+        function validateForm(event, formType) {
+            event.preventDefault();
+            let email = document.getElementById(formType + '-email').value;
+            let password = document.getElementById(formType + '-password').value;
+            let errorMessage = document.getElementById(formType + '-error');
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                errorMessage.textContent = 'Invalid email format';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+
+            if (password.length < 6) {
+                errorMessage.textContent = 'Password must be at least 6 characters long';
+                errorMessage.style.display = 'block';
+                return false;
+            }
+
+            errorMessage.style.display = 'none';
+            alert(formType.charAt(0).toUpperCase() + formType.slice(1) + ' successful!');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Aspirent Academy</h1>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#courses">Courses</a>
+        <a href="#contact">Contact</a>
+        <a href="#login">Login</a>
+        <a href="#register">Register</a>
+    </nav>
+    <div class="container" id="home">
+        <h2>Welcome to Aspirent Academy</h2>
+        <p>Your pathway to success starts here!</p>
+        <div class="image-container">
+            <img src="https://via.placeholder.com/600x300?text=Educational+Success" alt="Educational Success">
+        </div>
+    </div>
+    <div class="container" id="about">
+        <h2>About Us</h2>
+        <p>Aspirent Academy is dedicated to providing quality education and professional training.</p>
+    </div>
+    <div class="container" id="courses">
+        <h2>Our Courses</h2>
+        <p>Explore a variety of courses designed to help you achieve your goals.</p>
+    </div>
+    <div class="container" id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: contact@aspirentacademy.com</p>
+        <p>Phone: +1234567890</p>
+    </div>
+    <div class="form-container" id="login">
+        <h2>Login</h2>
+        <form onsubmit="validateForm(event, 'login')">
+            <input type="email" id="login-email" placeholder="Email" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <p class="error" id="login-error"></p>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <div class="form-container" id="register">
+        <h2>Register</h2>
+        <form onsubmit="validateForm(event, 'register')">
+            <input type="text" id="register-name" placeholder="Full Name" required>
+            <input type="email" id="register-email" placeholder="Email" required>
+            <input type="password" id="register-password" placeholder="Password" required>
+            <p class="error" id="register-error"></p>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <footer>
+        &copy; 2025 Aspirent Academy. All Rights Reserved.
+    </footer>
+</body>
+</html>
